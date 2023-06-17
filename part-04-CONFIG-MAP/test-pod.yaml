@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  name: test-pod
+spec:
+  containers:
+    - name: test-pod
+      image: nginx
+      resources: {}
+      command: [ "/bin/sh", "-c", "env" ]
+      env:
+      # This might be a bucket shared by multiple applications. So you might want to keep it a different configmap and let each aplication pick the keys they need.
+      - name: CONFIG_TXT
+        valueFrom:
+          configMapKeyRef:
+            name: keyvalcfgmap
+            key: config.txt
+  restartPolicy: Never

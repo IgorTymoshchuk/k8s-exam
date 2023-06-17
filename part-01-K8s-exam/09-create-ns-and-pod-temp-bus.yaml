@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: finance-igor
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "temp-bus"
+  namespace: finance-igor
+  labels:
+    app: "temp-bus"
+spec:
+  containers:
+  - name: temp-bus
+    image: "redis:alpine"
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "100m"
+    ports:
+    - containerPort: 6379
+      name:  http

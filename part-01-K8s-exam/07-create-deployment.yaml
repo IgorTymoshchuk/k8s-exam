@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  hr-web-app
+  namespace: default
+  labels:
+    app:  hr-web-app
+spec:
+  selector:
+    matchLabels:
+      app: hr-web-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: hr-web-app
+    spec:
+      containers:
+      - name:  hr-web-app
+        image:  kodekloud/webapp-color
+        resources:
+        limits:
+          memory: "128Mi"
+          cpu: "100m"
+        ports:
+        - containerPort: 80
+          name:  hr-web-app

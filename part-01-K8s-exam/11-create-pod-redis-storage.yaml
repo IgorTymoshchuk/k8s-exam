@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-storage-igor
+  labels:
+    name: redis-storage-igor
+spec:
+  containers:
+  - name: redis-storage-igor
+    image: redis:alpine
+    volumeMounts:
+    - mountPath: /data/redis
+      name: redis-volume
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+    - containerPort: 6379
+      name:  http
+  volumes:
+  - name: redis-volume
+    emptyDir: {}
+    

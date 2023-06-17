@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "nginx-pod-igor"
+  namespace: default
+  labels:
+    app: "nginx-pod-igor"
+spec:
+  containers:
+  - name: nginx-pod-igor
+    image: "nginx:alpine"
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "100m"
+    ports:
+    - containerPort:  80
+      name:  http
+   
